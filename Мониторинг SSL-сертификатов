@@ -1,0 +1,6 @@
+Следующая команда покажет в консоли диапазоны дат, в пределах которых будет действителен сертификат сайта firstvds.ru, использующего протокол https на порту 443:
+$ echo | openssl s_client -servername firstvds.ru -connect firstvds.ru:443 2>/dev/null | openssl x509 -noout -dates 2>/dev/null
+Сертификат действителен с даты notBefore и до даты notAfter.
+
+Если вас интересует только дата, до которой будет работать сертификат, используйте такую команду:
+$ echo | openssl s_client -servername firstvds.ru -connect firstvds.ru:443 2>/dev/null | openssl x509 -noout -dates 2>/dev/null | grep notAfter | cut -d'=' -f2
